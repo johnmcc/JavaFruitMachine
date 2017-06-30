@@ -1,16 +1,26 @@
 package com.codeclan.example.fruitmachine;
 
+import java.util.Random;
+
 /**
  * Created by user on 30/06/2017.
  */
 
 public class FruitMachine {
-    int money;
+    int money; // Total cash held by the machine
+    Player player;
 
     public FruitMachine(int money) {
         this.money = money;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public int getMoney() {
         return money;
@@ -26,6 +36,19 @@ public class FruitMachine {
     }
 
     public Symbol[] spin() {
-        return new Symbol[0];
+        Symbol values[] = Symbol.values();
+        Symbol result[] = new Symbol[3];
+
+        for(int i=0; i<3; i++){
+            Random random = new Random();
+            int index = random.nextInt(values.length);
+            result[i] = values[index];
+        }
+
+        return result;
+    }
+
+    public boolean didPlayerWin(Symbol result[]) {
+        return (result[0] == result[1] && result[1] == result[2]);
     }
 }

@@ -2,6 +2,7 @@ package com.codeclan.example.fruitmachine;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -12,10 +13,15 @@ import static junit.framework.Assert.assertNotNull;
 
 public class FruitMachineTest {
     FruitMachine fruitMachine;
+    FruitMachine spyFruitMachine;
 
     @Before
     public void setUp() throws Exception {
         fruitMachine = new FruitMachine(50);
+        spyFruitMachine = Mockito.spy(fruitMachine);
+
+        Symbol[] jackpot = new Symbol[] {Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT};
+        Mockito.when(spyFruitMachine.spin()).thenReturn(jackpot);
     }
 
     @Test
@@ -40,5 +46,11 @@ public class FruitMachineTest {
     public void testSpin() throws Exception {
         Symbol result[] = fruitMachine.spin();
         assertNotNull(result);
+    }
+
+    @Test
+    public void testWin() throws Exception {
+        Symbol result[] = spyFruitMachine.spin();
+        assertEquals(true, fruitMachine.didPlayerWin(result));
     }
 }
