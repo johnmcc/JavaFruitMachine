@@ -7,9 +7,9 @@ import java.util.Random;
  */
 
 public class FruitMachine {
-    int money; // Total cash held by the machine
-    int credits;
-    final int costPerPlay = 1;
+    private int money; // Total cash held by the machine
+    private int credits;
+    private final int costPerPlay = 1;
 
     public FruitMachine(int money) {
         this.money = money;
@@ -53,17 +53,23 @@ public class FruitMachine {
     }
 
     public Symbol[] spin() throws NoMoneyInFruitMachineException {
-        Symbol result[] = new Symbol[3];
+        // Reduce the number of credits
         this.credits -= 1;
 
+        // Construct an array of three random symbols
+        Symbol result[] = new Symbol[3];
         for(int i=0; i<3; i++){
             result[i] = getResultSymbol();
         }
 
-        if(this.money >= (result[0].getMultiplier() * costPerPlay)){
+        // Check that we have enough money to pay out, otherwise throw an exception
+        int potentialPrizeAmount = result[0].getMultiplier() * costPerPlay;
+
+        if(this.money >= potentialPrizeAmount){
             return result;
         }else{
-            String message = "Sorry, there's not enough money in the machine! Speak to the cigarette smoking man at the front desk.";
+            String message = "Sorry, there's not enough money in the machine! " +
+                    "Speak to the cigarette smoking man at the front desk.";
             throw new NoMoneyInFruitMachineException(message);
         }
     }
