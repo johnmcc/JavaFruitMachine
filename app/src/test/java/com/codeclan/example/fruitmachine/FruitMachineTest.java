@@ -14,8 +14,7 @@ import static junit.framework.Assert.assertNotNull;
 public class FruitMachineTest {
     FruitMachine fruitMachine;
     FruitMachine spyFruitMachine;
-    Player player;
-    
+
     @Before
     public void setUp() throws Exception {
         fruitMachine = new FruitMachine(50);
@@ -23,14 +22,6 @@ public class FruitMachineTest {
 
         Symbol[] jackpot = new Symbol[] {Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT};
         Mockito.when(spyFruitMachine.spin()).thenReturn(jackpot);
-        
-        player = new Player(10);
-        fruitMachine.setPlayer(player);
-    }
-
-    @Test
-    public void testGetPlayer() throws Exception {
-        assertEquals(player, fruitMachine.getPlayer());
     }
 
     @Test

@@ -8,18 +8,9 @@ import java.util.Random;
 
 public class FruitMachine {
     int money; // Total cash held by the machine
-    Player player;
 
     public FruitMachine(int money) {
         this.money = money;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 
     public int getMoney() {
