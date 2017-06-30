@@ -1,7 +1,5 @@
 package com.codeclan.example.fruitmachine;
 
-import java.util.InputMismatchException;
-
 /**
  * Created by user on 30/06/2017.
  */

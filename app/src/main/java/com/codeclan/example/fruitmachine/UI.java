@@ -1,9 +1,5 @@
 package com.codeclan.example.fruitmachine;
 
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
