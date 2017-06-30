@@ -26,7 +26,7 @@ public class Player {
         }
     }
 
-    public void play(FruitMachine fruitMachine) {
+    public void play(FruitMachine fruitMachine) throws NoMoneyInFruitMachineException {
         Symbol result[] = fruitMachine.spin();
         if(fruitMachine.didPlayerWin(result)){
             int cash = fruitMachine.payout(result);

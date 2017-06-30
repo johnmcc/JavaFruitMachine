@@ -29,6 +29,10 @@ public class FruitMachine {
         return money;
     }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     public void fillUp(int amount) {
         this.money += amount;
     }
@@ -48,17 +52,20 @@ public class FruitMachine {
         return values[index];
     }
 
-    public Symbol[] spin() {
+    public Symbol[] spin() throws NoMoneyInFruitMachineException {
         Symbol result[] = new Symbol[3];
-        if(this.credits > 0){
-            this.credits -= 1;
+        this.credits -= 1;
 
-            for(int i=0; i<3; i++){
-                result[i] = getResultSymbol();
-            }
+        for(int i=0; i<3; i++){
+            result[i] = getResultSymbol();
         }
 
-        return result;
+        if(this.money >= (result[0].getMultiplier() * costPerPlay)){
+            return result;
+        }else{
+            String message = "Sorry, there's not enough money in the machine! Speak to the cigarette smoking man at the front desk.";
+            throw new NoMoneyInFruitMachineException(message);
+        }
     }
 
     public boolean didPlayerWin(Symbol result[]) {

@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.fail;
 
 /**
  * Created by user on 30/06/2017.
@@ -80,5 +81,16 @@ public class FruitMachineTest {
         assertEquals(4, spyFruitMachine.getCredits());
         assertEquals(45, spyFruitMachine.getMoney());
         assertEquals(15, player.getMoney());
+    }
+
+    @Test
+    public void testMachineOnlyPaysOutUpToCashAmount(){
+        spyFruitMachine.setMoney(0);
+
+        player.addMoneyToFruitMachine(spyFruitMachine, 5);
+        try {
+            player.play(spyFruitMachine);
+            fail("The fruit machine didn't throw a NoMoneyInFruitMachine error.");
+        } catch (NoMoneyInFruitMachineException e) {}
     }
 }
