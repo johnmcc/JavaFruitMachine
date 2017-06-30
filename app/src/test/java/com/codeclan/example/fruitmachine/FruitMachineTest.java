@@ -101,7 +101,7 @@ public class FruitMachineTest {
 
         Symbol nudgedResult[] = fruitMachine.nudge(result, 1);
 
-        Symbol expected[] = new Symbol[]{ Symbol.SEVEN, Symbol.SEVEN, Symbol.SEVEN};
+        Symbol expected[] = new Symbol[]{ Symbol.SEVEN, Symbol.SEVEN, Symbol.SEVEN };
         assertArrayEquals(expected, nudgedResult);
     }
 
