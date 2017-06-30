@@ -74,9 +74,13 @@ public class FruitMachine {
 
 
     public Symbol[] nudge(Symbol[] result, int index) {
+        // Get all symbols, as a list
         Symbol values[] = Symbol.values();
+
+        // Get the symbol that the user wants to change
         Symbol currentSymbol = result[index];
 
+        // Get the current symbol's position in the array of all symbols
         int currentIndex = 0;
         for(int i=0; i<values.length; i++){
             if(values[i] == currentSymbol){
@@ -85,11 +89,13 @@ public class FruitMachine {
             }
         }
 
+        // Get the index of the next symbol, looping back round to zero if necessary
         int nextIndex = currentIndex + 1;
         if(nextIndex >= values.length) {
             nextIndex = 0;
         }
 
+        // Set the new symbol in the result array at the appropriate index
         result[index] = values[nextIndex];
         return result;
     }
