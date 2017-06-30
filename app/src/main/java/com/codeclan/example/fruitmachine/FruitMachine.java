@@ -71,4 +71,26 @@ public class FruitMachine {
     public boolean didPlayerWin(Symbol result[]) {
         return (result[0] == result[1] && result[1] == result[2]);
     }
+
+
+    public Symbol[] nudge(Symbol[] result, int index) {
+        Symbol values[] = Symbol.values();
+        Symbol currentSymbol = result[index];
+
+        int currentIndex = 0;
+        for(int i=0; i<values.length; i++){
+            if(values[i] == currentSymbol){
+                currentIndex = i;
+                break;
+            }
+        }
+
+        int nextIndex = currentIndex + 1;
+        if(nextIndex >= values.length) {
+            nextIndex = 0;
+        }
+
+        result[index] = values[nextIndex];
+        return result;
+    }
 }

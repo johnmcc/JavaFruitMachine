@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Created by user on 30/06/2017.
@@ -92,5 +93,25 @@ public class FruitMachineTest {
             player.play(spyFruitMachine);
             fail("The fruit machine didn't throw a NoMoneyInFruitMachine error.");
         } catch (NoMoneyInFruitMachineException e) {}
+    }
+
+    @Test
+    public void testNudge() throws Exception {
+        Symbol result[] = new Symbol[]{ Symbol.SEVEN, Symbol.JACKPOT, Symbol.SEVEN };
+
+        Symbol nudgedResult[] = fruitMachine.nudge(result, 1);
+
+        Symbol expected[] = new Symbol[]{ Symbol.SEVEN, Symbol.SEVEN, Symbol.SEVEN};
+        assertArrayEquals(expected, nudgedResult);
+    }
+
+    @Test
+    public void testNudgeRollsOver() throws Exception {
+        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
+
+        Symbol nudgedResult[] = fruitMachine.nudge(result, 2);
+
+        Symbol expected[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
+        assertArrayEquals(expected, nudgedResult);
     }
 }
