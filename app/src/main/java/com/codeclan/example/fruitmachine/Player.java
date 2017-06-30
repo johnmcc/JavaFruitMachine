@@ -18,4 +18,19 @@ public class Player {
     public void addMoney(int amount){
         this.money += amount;
     }
+
+    public void addMoneyToFruitMachine(FruitMachine fruitMachine, int amount) {
+        if(amount <= this.money){
+            fruitMachine.addCredits(amount);
+            this.money -= amount;
+        }
+    }
+
+    public void play(FruitMachine fruitMachine) {
+        Symbol result[] = fruitMachine.spin();
+        if(fruitMachine.didPlayerWin(result)){
+            int cash = fruitMachine.payout(result);
+            addMoney(cash);
+        }
+    }
 }
