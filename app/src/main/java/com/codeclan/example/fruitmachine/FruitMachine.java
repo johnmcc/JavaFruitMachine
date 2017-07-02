@@ -79,7 +79,7 @@ public class FruitMachine {
     }
 
 
-    public Symbol[] nudge(Symbol[] result, int index) {
+    public static Symbol[] nudge(Symbol[] result, int index) {
         // Get all symbols, as a list
         Symbol values[] = Symbol.values();
 

@@ -19,6 +19,9 @@ public class UI {
     private final String leftWithMoney = "You left with some funds intact - £%d! Congratulations!";
     private final String leftWithNoMoney = "You leave with no money, hungry, cold, and alone.";
     private final String badInputString = "Please restrict your text to 's', 'a', or 'w'.";
+    private final String playerOptions = "Press 'h' to hold, or 'n' to nudge.";
+    private final String askForNudge = "Which barrel would you like to nudge? Type 1, 2, or 3.";
+    private final String youWon = "Congratulations! You won £%d!";
 
     public UI() {
         this.scanner = new Scanner(System.in);
@@ -42,7 +45,6 @@ public class UI {
 
         return amount;
     }
-
 
     public void showPlayerCash(Player player) {
         System.out.println();
@@ -92,5 +94,19 @@ public class UI {
 
     public void badInput() {
         System.out.println(badInputString);
+    }
+
+    public String showPlayerOptions() {
+        System.out.println(playerOptions);
+        return scanner.next();
+    }
+
+    public int askForNudge() {
+        System.out.println(askForNudge);
+        return scanner.nextInt();
+    }
+
+    public void showWin(int cash) {
+        System.out.println(String.format(youWon, cash));
     }
 }

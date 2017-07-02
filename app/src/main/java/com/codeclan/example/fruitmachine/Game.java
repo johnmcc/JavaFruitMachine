@@ -57,6 +57,17 @@ public class Game {
         try {
             result = fruitMachine.spin();
             ui.showResult(result);
+            String option = ui.showPlayerOptions();
+
+            if(option.equals("n")){
+                // we're doing -1 here because the barrels are zero-indexed
+                int nudgePos = ui.askForNudge() - 1;
+                result = FruitMachine.nudge(result, nudgePos);
+                ui.showResult(result);
+
+            }else if(option.equals("h")){
+
+            }
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());
@@ -64,6 +75,7 @@ public class Game {
 
         if(fruitMachine.didPlayerWin(result)){
             int cash = fruitMachine.payout(result);
+            ui.showWin(cash);
             player.addMoney(cash);
         }
 
