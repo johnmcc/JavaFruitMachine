@@ -22,10 +22,11 @@ public class Game {
         askForMoney();
 
         while(player.getMoney() > 0 || fruitMachine.getCredits() > 0){
-            String option = ui.showOptions();
+            String option = ui.showInitialOptions();
             execute(option);
         }
 
+        // the player has run out of money, and fruit machine credits. Sad times :(
         ui.walkAway(player);
     }
 
@@ -57,7 +58,7 @@ public class Game {
         try {
             result = fruitMachine.spin();
             ui.showResult(result);
-            result = handlePlayerOptions(result);
+            result = handlePlayerSecondPassOptions(result);
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());
@@ -75,8 +76,8 @@ public class Game {
         ui.showCredits(fruitMachine);
     }
 
-    private Symbol[] handlePlayerOptions(Symbol[] result) {
-        String option = ui.showPlayerOptions();
+    private Symbol[] handlePlayerSecondPassOptions(Symbol[] result) {
+        String option = ui.showPlayerSecondPassOptions();
 
         if(option.equals("n")) {
             // we're doing -1 here because the barrels are zero-indexed

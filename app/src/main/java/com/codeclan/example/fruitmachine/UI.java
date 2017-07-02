@@ -13,13 +13,13 @@ public class UI {
     private final String displayPlayerMoney = "You have £%d left.";
     private final String howMuchMoney = "How much money would you like to put in puggy?";
     private final String displayCredits = "There are %d credits in puggy.";
-    private final String options = "press 's' to spin / 'a' to add money / 'w' to walk away";
+    private final String initialOptions = "press 's' to spin / 'a' to add money / 'w' to walk away";
     private final String resultString = "* %s / %s / %s *";
     private final String noCredits = "You have no credits left.";
     private final String leftWithMoney = "You left with some funds intact - £%d! Congratulations!";
     private final String leftWithNoMoney = "You leave with no money, hungry, cold, and alone.";
     private final String badInputString = "Please restrict your text to 's', 'a', or 'w'.";
-    private final String playerOptions = "Press 'h' to hold, 'n' to nudge, or 's' to re-spin all barrels.";
+    private final String playerSecondPassOptions = "Press 'h' to hold, 'n' to nudge, or 's' to re-spin all barrels.";
     private final String askForNudge = "Which barrel would you like to nudge? Type 1, 2, or 3.";
     private final String youWon = "Congratulations! You won £%d!";
     private final String askWhichToHold = "Which barrels would you like to hold? Enter numbers 1, 2, or 3 separated by a space.";
@@ -57,8 +57,8 @@ public class UI {
         System.out.println();
     }
 
-    public String showOptions() {
-        System.out.println(options);
+    public String showInitialOptions() {
+        System.out.println(initialOptions);
         return scanner.next();
     }
 
@@ -97,8 +97,8 @@ public class UI {
         System.out.println(badInputString);
     }
 
-    public String showPlayerOptions() {
-        System.out.println(playerOptions);
+    public String showPlayerSecondPassOptions() {
+        System.out.println(playerSecondPassOptions);
         return scanner.next();
     }
 
