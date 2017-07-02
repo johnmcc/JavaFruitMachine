@@ -12,6 +12,6 @@ public class SymbolTest {
     @Test
     public void testSymbolValue() throws Exception {
         Symbol symbol = Symbol.JACKPOT;
-        assertEquals(10, symbol.getMultiplier());
+        assertEquals(100, symbol.getMultiplier());
     }
 }

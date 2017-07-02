@@ -20,7 +20,7 @@ public class FruitMachineTest {
 
     @Before
     public void setUp() throws Exception {
-        fruitMachine = new FruitMachine(50);
+        fruitMachine = new FruitMachine(200);
         spyFruitMachine = Mockito.spy(fruitMachine);
 
         Mockito.when(spyFruitMachine.getResultSymbol()).thenReturn(Symbol.JACKPOT);
@@ -30,21 +30,21 @@ public class FruitMachineTest {
 
     @Test
     public void testGetMoney() throws Exception {
-        assertEquals(50, fruitMachine.getMoney());
+        assertEquals(200, fruitMachine.getMoney());
     }
 
     @Test
     public void testFillUpFruitMachine() throws Exception {
         fruitMachine.fillUp(50);
-        assertEquals(100, fruitMachine.getMoney());
+        assertEquals(250, fruitMachine.getMoney());
     }
     
     @Test
     public void testPayOut() throws Exception {
         Symbol result[] = new Symbol[]{Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT};
         int payout = fruitMachine.payout(result);
-        assertEquals(10, payout);
-        assertEquals(40, fruitMachine.getMoney());
+        assertEquals(100, payout);
+        assertEquals(100, fruitMachine.getMoney());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class FruitMachineTest {
     public void testPlayerEnterMoney() throws Exception {
         player.addMoneyToFruitMachine(fruitMachine, 5);
         assertEquals(5, player.getMoney());
-        assertEquals(55, fruitMachine.getMoney());
+        assertEquals(205, fruitMachine.getMoney());
         assertEquals(5, fruitMachine.getCredits());
     }
 
@@ -82,8 +82,8 @@ public class FruitMachineTest {
         }
 
         assertEquals(4, spyFruitMachine.getCredits());
-        assertEquals(45, spyFruitMachine.getMoney());
-        assertEquals(15, player.getMoney());
+        assertEquals(105, spyFruitMachine.getMoney());
+        assertEquals(105, player.getMoney());
     }
 
     @Test
