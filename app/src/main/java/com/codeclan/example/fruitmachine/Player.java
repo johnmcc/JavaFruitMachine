@@ -25,12 +25,4 @@ public class Player {
             this.money -= amount;
         }
     }
-
-    public void play(FruitMachine fruitMachine) throws NoMoneyInFruitMachineException {
-        Symbol result[] = fruitMachine.spin();
-        if(fruitMachine.didPlayerWin(result)){
-            int cash = fruitMachine.payout(result);
-            addMoney(cash);
-        }
-    }
 }

@@ -75,9 +75,11 @@ public class FruitMachineTest {
     @Test
     public void testWin() throws Exception {
         player.addMoneyToFruitMachine(spyFruitMachine, 5);
-        player.play(spyFruitMachine);
-
-        // Player buys 5 credits, spins once (4 credits), wins 10 * stake - £10
+        Symbol result[] = spyFruitMachine.spin();
+        if(spyFruitMachine.didPlayerWin(result)){
+            int cash = spyFruitMachine.payout(result);
+            player.addMoney(cash);
+        }
 
         assertEquals(4, spyFruitMachine.getCredits());
         assertEquals(45, spyFruitMachine.getMoney());
@@ -85,12 +87,12 @@ public class FruitMachineTest {
     }
 
     @Test
-    public void testMachineOnlyPaysOutUpToCashAmount(){
+    public void testMachineOnlyPaysOutUpToCashAmount() throws Exception {
         spyFruitMachine.setMoney(0);
 
         player.addMoneyToFruitMachine(spyFruitMachine, 5);
         try {
-            player.play(spyFruitMachine);
+            Symbol result[] = spyFruitMachine.spin();
             fail("The fruit machine didn't throw a NoMoneyInFruitMachine error.");
         } catch (NoMoneyInFruitMachineException e) {}
     }
