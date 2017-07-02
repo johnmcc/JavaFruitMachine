@@ -57,29 +57,13 @@ public class Game {
         try {
             result = fruitMachine.spin();
             ui.showResult(result);
-            String option = ui.showPlayerOptions();
-
-            if(option.equals("n")) {
-                // we're doing -1 here because the barrels are zero-indexed
-                int nudgePos = ui.askForNudge() - 1;
-                result = fruitMachine.nudge(result, nudgePos);
-                ui.showResult(result);
-
-            }else if(option.equals("h")){
-                int toHold[] = ui.askWhichToHold();
-                result = fruitMachine.holdAndSpin(result, toHold);
-                ui.showResult(result);
-
-            }else if(option.equals("s")){
-                // we need to use holdAndSpin here, as it doesn't reduce the number of credits
-                result = fruitMachine.holdAndSpin(result, new int[0]);
-                ui.showResult(result);
-            }
-
+            result = handlePlayerOptions(result);
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());
         }
+
+        ui.showResult(result);
 
         if(fruitMachine.didPlayerWin(result)){
             int cash = fruitMachine.payout(result);
@@ -89,6 +73,26 @@ public class Game {
 
         ui.showPlayerCash(player);
         ui.showCredits(fruitMachine);
+    }
+
+    private Symbol[] handlePlayerOptions(Symbol[] result) {
+        String option = ui.showPlayerOptions();
+
+        if(option.equals("n")) {
+            // we're doing -1 here because the barrels are zero-indexed
+            int nudgePos = ui.askForNudge() - 1;
+            result = fruitMachine.nudge(result, nudgePos);
+
+        }else if(option.equals("h")){
+            int toHold[] = ui.askWhichToHold();
+            result = fruitMachine.holdAndSpin(result, toHold);
+
+        }else if(option.equals("s")){
+            // we need to use holdAndSpin here, as it doesn't reduce the number of credits
+            result = fruitMachine.holdAndSpin(result, new int[0]);
+        }
+
+        return result;
     }
 
     public void askForMoney(){
