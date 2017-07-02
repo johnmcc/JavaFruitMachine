@@ -77,7 +77,7 @@ public class Game {
     }
 
     private Symbol[] handlePlayerSecondPassOptions(Symbol[] result) {
-        String option = ui.showPlayerSecondPassOptions();
+        String option = ui.showPlayerSecondPassOptions().toLowerCase();
 
         if(option.equals("n")) {
             // we're doing -1 here because the barrels are zero-indexed
