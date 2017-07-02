@@ -64,16 +64,11 @@ public class UI {
 
     public void showResult(Symbol[] result) {
         String formatted = String.format(resultString, result[0], result[1], result[2]);
-        int formattedLength = formatted.length();
+        String stars = TextUtils.getStars(formatted.length());
 
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<formattedLength; i++){
-            sb.append("*");
-        }
-
-        System.out.println(sb.toString());
+        System.out.println(stars);
         System.out.println(formatted);
-        System.out.println(sb.toString());
+        System.out.println(stars);
     }
 
     public void handleException(String message) {

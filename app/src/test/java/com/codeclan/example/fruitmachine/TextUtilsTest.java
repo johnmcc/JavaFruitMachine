@@ -24,4 +24,10 @@ public class TextUtilsTest {
         int result[] = TextUtils.parseStringToIntArray(input);
         assertEquals(0, result[0]);
     }
+
+    @Test
+    public void testStars() throws Exception {
+        String stars = TextUtils.getStars(10);
+        assertEquals("**********", stars);
+    }
 }

@@ -16,4 +16,12 @@ public class TextUtils {
 
         return inputArray;
     }
+
+    public static String getStars(int number){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<number; i++){
+            sb.append("*");
+        }
+        return sb.toString();
+    }
 }
