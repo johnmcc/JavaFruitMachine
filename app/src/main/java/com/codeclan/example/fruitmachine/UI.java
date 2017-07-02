@@ -11,8 +11,8 @@ public class UI {
 
     private final String welcome = "Welcome to Puggy!";
     private final String displayPlayerMoney = "You have £%d left.";
-    private final String howMuchMoney = "How much money would you like to put in puggy?";
-    private final String displayCredits = "There are %d credits in puggy.";
+    private final String howMuchMoney = "How much money would you like to put in the puggy?";
+    private final String displayCredits = "There are %d credits in the puggy.";
     private final String initialOptions = "press 's' to spin / 'a' to add money / 'w' to walk away";
     private final String resultString = "* %s / %s / %s *";
     private final String noCredits = "You have no credits left.";
