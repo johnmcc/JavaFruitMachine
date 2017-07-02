@@ -115,17 +115,13 @@ public class UI {
         int[] toHold = new int[0];
 
         System.out.println(askWhichToHold);
+
+        // we need to throw in an extra scanner.nextLine() here so that java ignores the new line :(
         scanner.nextLine();
         String toHoldString = scanner.nextLine();
 
         if(toHoldString.length() > 0){
-            String toHoldStringArray[] = toHoldString.split(" ");
-
-            toHold = new int[toHoldStringArray.length];
-
-            for(int i=0; i<toHoldStringArray.length; i++){
-                toHold[i] = Integer.parseInt(toHoldStringArray[i]) - 1;
-            }
+            toHold = TextUtils.parseStringToIntArray(toHoldString);
         }
 
         return toHold;
