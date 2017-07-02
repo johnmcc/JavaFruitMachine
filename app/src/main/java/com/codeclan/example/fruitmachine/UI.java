@@ -19,9 +19,10 @@ public class UI {
     private final String leftWithMoney = "You left with some funds intact - £%d! Congratulations!";
     private final String leftWithNoMoney = "You leave with no money, hungry, cold, and alone.";
     private final String badInputString = "Please restrict your text to 's', 'a', or 'w'.";
-    private final String playerOptions = "Press 'h' to hold, or 'n' to nudge.";
+    private final String playerOptions = "Press 'h' to hold, 'n' to nudge, or 's' to re-spin all barrels.";
     private final String askForNudge = "Which barrel would you like to nudge? Type 1, 2, or 3.";
     private final String youWon = "Congratulations! You won £%d!";
+    private final String askWhichToHold = "Which barrels would you like to hold? Enter numbers 1, 2, or 3 separated by a space.";
 
     public UI() {
         this.scanner = new Scanner(System.in);
@@ -108,5 +109,25 @@ public class UI {
 
     public void showWin(int cash) {
         System.out.println(String.format(youWon, cash));
+    }
+
+    public int[] askWhichToHold() {
+        int[] toHold = new int[0];
+
+        System.out.println(askWhichToHold);
+        scanner.nextLine();
+        String toHoldString = scanner.nextLine();
+
+        if(toHoldString.length() > 0){
+            String toHoldStringArray[] = toHoldString.split(" ");
+
+            toHold = new int[toHoldStringArray.length];
+
+            for(int i=0; i<toHoldStringArray.length; i++){
+                toHold[i] = Integer.parseInt(toHoldStringArray[i]) - 1;
+            }
+        }
+
+        return toHold;
     }
 }

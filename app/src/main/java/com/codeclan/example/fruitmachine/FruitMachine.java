@@ -1,5 +1,6 @@
 package com.codeclan.example.fruitmachine;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -79,7 +80,7 @@ public class FruitMachine {
     }
 
 
-    public static Symbol[] nudge(Symbol[] result, int index) {
+    public Symbol[] nudge(Symbol[] result, int index) {
         // Get all symbols, as a list
         Symbol values[] = Symbol.values();
 
@@ -103,6 +104,27 @@ public class FruitMachine {
 
         // Set the new symbol in the result array at the appropriate index
         result[index] = values[nextIndex];
+        return result;
+    }
+
+    public Symbol[] holdAndSpin(Symbol[] result, int[] toHold) {
+        // for each Symbol in the result array...
+        for(int i = 0; i<3; i++){
+
+            // check to see if the index is in the array toHold
+            boolean found = false;
+            for(int j : toHold){
+                if(i == j){
+                    found = true;
+                }
+            }
+
+            // if the index isn't in toHold, get a new symbol for this index
+            if(!found){
+                result[i] = getResultSymbol();
+            }
+        }
+
         return result;
     }
 }

@@ -59,15 +59,23 @@ public class Game {
             ui.showResult(result);
             String option = ui.showPlayerOptions();
 
-            if(option.equals("n")){
+            if(option.equals("n")) {
                 // we're doing -1 here because the barrels are zero-indexed
                 int nudgePos = ui.askForNudge() - 1;
-                result = FruitMachine.nudge(result, nudgePos);
+                result = fruitMachine.nudge(result, nudgePos);
                 ui.showResult(result);
 
             }else if(option.equals("h")){
+                int toHold[] = ui.askWhichToHold();
+                result = fruitMachine.holdAndSpin(result, toHold);
+                ui.showResult(result);
 
+            }else if(option.equals("s")){
+                // we need to use holdAndSpin here, as it doesn't reduce the number of credits
+                result = fruitMachine.holdAndSpin(result, new int[0]);
+                ui.showResult(result);
             }
+
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());

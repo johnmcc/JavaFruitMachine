@@ -116,4 +116,27 @@ public class FruitMachineTest {
         Symbol expected[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
         assertArrayEquals(expected, nudgedResult);
     }
+
+    @Test
+    public void testHold() throws Exception {
+        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
+
+        int toHold[] = new int[] {0, 1};
+        Symbol resultAfterHoldAndSpin[] = fruitMachine.holdAndSpin(result, toHold);
+
+        assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[0]);
+        assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[1]);
+    }
+
+    @Test
+    public void testHoldAllThreeSymbols() throws Exception {
+        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
+
+        int toHold[] = new int[] {0, 1, 2};
+        Symbol resultAfterHoldAndSpin[] = fruitMachine.holdAndSpin(result, toHold);
+
+        assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[0]);
+        assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[1]);
+        assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[2]);
+    }
 }
