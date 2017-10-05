@@ -59,12 +59,11 @@ public class Game {
             result = fruitMachine.spin();
             ui.showResult(result);
             result = handlePlayerSecondPassOptions(result);
+            ui.showResult(result);
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());
         }
-
-        ui.showResult(result);
 
         if(fruitMachine.didPlayerWin(result)){
             int cash = fruitMachine.payout(result);
