@@ -8,7 +8,7 @@ public class TextUtils {
     public static int[] parseStringToIntArray(String input) {
         String inputStringArray[] = input.split(" ");
 
-        int inputArray[] = new int[inputStringArray.length];
+        int[] inputArray = new int[inputStringArray.length];
 
         for(int i=0; i<inputStringArray.length; i++){
             // we're doing -1 here as the return array should be zero-indexed

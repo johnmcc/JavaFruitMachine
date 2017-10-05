@@ -41,7 +41,7 @@ public class FruitMachineTest {
     
     @Test
     public void testPayOut() throws Exception {
-        Symbol result[] = new Symbol[]{Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT};
+        Symbol[] result = new Symbol[]{Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT};
         int payout = fruitMachine.payout(result);
         assertEquals(100, payout);
         assertEquals(100, fruitMachine.getMoney());
@@ -62,20 +62,20 @@ public class FruitMachineTest {
 
     @Test
     public void testSpin() throws Exception {
-        Symbol result[] = fruitMachine.spin();
+        Symbol[] result = fruitMachine.spin();
         assertNotNull(result);
     }
 
     @Test
     public void testWinCondition() throws Exception {
-        Symbol result[] = spyFruitMachine.spin();
+        Symbol[] result = spyFruitMachine.spin();
         assertEquals(true, fruitMachine.didPlayerWin(result));
     }
 
     @Test
     public void testWin() throws Exception {
         player.addMoneyToFruitMachine(spyFruitMachine, 5);
-        Symbol result[] = spyFruitMachine.spin();
+        Symbol[] result = spyFruitMachine.spin();
         if(spyFruitMachine.didPlayerWin(result)){
             int cash = spyFruitMachine.payout(result);
             player.addMoney(cash);
@@ -92,37 +92,37 @@ public class FruitMachineTest {
 
         player.addMoneyToFruitMachine(spyFruitMachine, 5);
         try {
-            Symbol result[] = spyFruitMachine.spin();
+            Symbol[] result = spyFruitMachine.spin();
             fail("The fruit machine didn't throw a NoMoneyInFruitMachine error.");
         } catch (NoMoneyInFruitMachineException e) {}
     }
 
     @Test
     public void testNudge() throws Exception {
-        Symbol result[] = new Symbol[]{ Symbol.SEVEN, Symbol.JACKPOT, Symbol.SEVEN };
+        Symbol[] result = new Symbol[]{ Symbol.SEVEN, Symbol.JACKPOT, Symbol.SEVEN };
 
-        Symbol nudgedResult[] = fruitMachine.nudge(result, 1);
+        Symbol[] nudgedResult = fruitMachine.nudge(result, 1);
 
-        Symbol expected[] = new Symbol[]{ Symbol.SEVEN, Symbol.SEVEN, Symbol.SEVEN };
+        Symbol[] expected = new Symbol[]{ Symbol.SEVEN, Symbol.SEVEN, Symbol.SEVEN };
         assertArrayEquals(expected, nudgedResult);
     }
 
     @Test
     public void testNudgeRollsOver() throws Exception {
-        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
+        Symbol[] result = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
 
-        Symbol nudgedResult[] = fruitMachine.nudge(result, 2);
+        Symbol[] nudgedResult = fruitMachine.nudge(result, 2);
 
-        Symbol expected[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
+        Symbol[] expected = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
         assertArrayEquals(expected, nudgedResult);
     }
 
     @Test
     public void testHold() throws Exception {
-        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
+        Symbol[] result = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.HORSESHOE };
 
-        int toHold[] = new int[] {0, 1};
-        Symbol resultAfterHoldAndSpin[] = fruitMachine.holdAndSpin(result, toHold);
+        int[] toHold = new int[] {0, 1};
+        Symbol[] resultAfterHoldAndSpin = fruitMachine.holdAndSpin(result, toHold);
 
         assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[0]);
         assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[1]);
@@ -130,10 +130,10 @@ public class FruitMachineTest {
 
     @Test
     public void testHoldAllThreeSymbols() throws Exception {
-        Symbol result[] = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
+        Symbol[] result = new Symbol[]{ Symbol.JACKPOT, Symbol.JACKPOT, Symbol.JACKPOT };
 
-        int toHold[] = new int[] {0, 1, 2};
-        Symbol resultAfterHoldAndSpin[] = fruitMachine.holdAndSpin(result, toHold);
+        int[] toHold = new int[] {0, 1, 2};
+        Symbol[] resultAfterHoldAndSpin = fruitMachine.holdAndSpin(result, toHold);
 
         assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[0]);
         assertEquals(Symbol.JACKPOT, resultAfterHoldAndSpin[1]);

@@ -12,7 +12,7 @@ public class TextUtilsTest {
     @Test
     public void testParseStringToArrayThreeNumbers() throws Exception {
         String input = "1 2 3";
-        int result[] = TextUtils.parseStringToIntArray(input);
+        int[] result = TextUtils.parseStringToIntArray(input);
         assertEquals(0, result[0]);
         assertEquals(1, result[1]);
         assertEquals(2, result[2]);
@@ -21,7 +21,7 @@ public class TextUtilsTest {
     @Test
     public void testParseStringToArrayOneNumber() throws Exception {
         String input = "1";
-        int result[] = TextUtils.parseStringToIntArray(input);
+        int[] result = TextUtils.parseStringToIntArray(input);
         assertEquals(0, result[0]);
     }
 

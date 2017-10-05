@@ -37,7 +37,7 @@ public class FruitMachine {
         this.money += amount;
     }
 
-    public int payout(Symbol result[]) {
+    public int payout(Symbol[] result) {
         int payoutAmount = result[0].getMultiplier() * costPerPlay;
         this.money -= payoutAmount;
         return payoutAmount;
@@ -45,7 +45,7 @@ public class FruitMachine {
 
     public Symbol getResultSymbol(){
         // we're abstracting this to a separate method so that we can use Mockito properly
-        Symbol values[] = Symbol.values();
+        Symbol[] values = Symbol.values();
 
         Random random = new Random();
         int index = random.nextInt(values.length);
@@ -57,7 +57,7 @@ public class FruitMachine {
         this.credits -= 1;
 
         // Construct an array of three random symbols
-        Symbol result[] = new Symbol[3];
+        Symbol[] result = new Symbol[3];
         for(int i=0; i<3; i++){
             result[i] = getResultSymbol();
         }
@@ -74,14 +74,14 @@ public class FruitMachine {
         }
     }
 
-    public boolean didPlayerWin(Symbol result[]) {
+    public boolean didPlayerWin(Symbol[] result) {
         return (result[0] == result[1] && result[1] == result[2]);
     }
 
 
     public Symbol[] nudge(Symbol[] result, int index) {
         // Get all symbols, as a list
-        Symbol values[] = Symbol.values();
+        Symbol[] values = Symbol.values();
 
         // Get the symbol that the user wants to change
         Symbol currentSymbol = result[index];

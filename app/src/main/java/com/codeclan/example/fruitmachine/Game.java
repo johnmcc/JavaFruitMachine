@@ -53,7 +53,7 @@ public class Game {
     }
 
     private void takeTurn() {
-        Symbol result[] = new Symbol[0];
+        Symbol[] result = new Symbol[0];
 
         try {
             result = fruitMachine.spin();
@@ -63,6 +63,7 @@ public class Game {
 
         } catch (NoMoneyInFruitMachineException e) {
             ui.handleException(e.getMessage());
+            System.exit(1);
         }
 
         if(fruitMachine.didPlayerWin(result)){
@@ -84,7 +85,7 @@ public class Game {
             result = fruitMachine.nudge(result, nudgePos);
 
         }else if(option.equals("h")){
-            int toHold[] = ui.askWhichToHold();
+            int[] toHold = ui.askWhichToHold();
             result = fruitMachine.holdAndSpin(result, toHold);
 
         }else if(option.equals("s")){
